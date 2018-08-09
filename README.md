@@ -10,8 +10,8 @@ It is based on the networks:
    * http://mi.eng.cam.ac.uk/projects/segnet/
 
 The network was trained on ~40000 images   
-20000 images were used but were flipped horizontally doubling the sample size  
-Lanes were captured using https://github.com/Will-J-Gale/GTA-Lane-Finding and only the good images were kept
+~20000 images were used but were flipped horizontally doubling the sample size  
+Lanes were captured using https://github.com/Will-J-Gale/GTA-Lane-Finding with only the good images used
 
 ## Advantages over standard lane finding algorith
    1. Runs at ~15fps (~5fps faster)
