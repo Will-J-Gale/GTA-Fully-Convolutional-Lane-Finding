@@ -13,5 +13,11 @@ The network was trained on ~40000 images
 20000 images were used but were flipped horizontally doubling the sample size  
 Lanes were captured using https://github.com/Will-J-Gale/GTA-Lane-Finding and only the good images were kept
 
+## Advantages over standard lane finding algorith
+   1. Runs at ~15fps (~5fps faster)
+   2. Reacts well to fast movement
+   3. Potentially more accurate 
+   
 The above demonstration shows the fully convolution network has potential and is clearly learning the lanes.  
-More data is still required to reduce the glitches
+More data is still required to reduce the glitches and improve accuracy
+
