@@ -36,6 +36,7 @@ Recommended to use on dual monitors
 1. Run GTA5 in windowed mode 1280x720
 2. Find a car and enable Hood Camera
 3. Run LaneFinder.py
+
    
 The above demonstration shows the fully convolution network has potential and is clearly learning the lanes.  
 More data is still required to reduce the glitches and improve accuracy
