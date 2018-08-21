@@ -12,7 +12,7 @@ The network was trained on ~40000 images
 ~20000 images were used but were flipped horizontally doubling the sample size  
 Lanes were captured using https://github.com/Will-J-Gale/GTA-Lane-Finding with only the good images used
 
-## Advantages over standard lane finding algorith
+## Advantages over standard lane finding algorithm
    1. Runs at ~15fps (~5fps faster)
    2. Reacts well to fast movement
    3. Potentially more accurate 
