@@ -2,7 +2,7 @@
 ![alt text](https://github.com/Will-J-Gale/GTA-Fully-Convolutional-Lane-Finding/blob/master/Images/Conv%20Lane%20HALF%20SIZE.gif)  
 
 ## How it works
-This algorithm is a fully convolutional neural network that takes a 3 channel image input and outputs a 1 channel image with its prediction of where the lanes are  
+This algorithm is a fully convolutional neural network that takes a 3-channel image input and outputs a 1 channel image with its prediction of where the lanes are  
 
 It is based on the networks:
    * https://towardsdatascience.com/lane-detection-with-deep-learning-part-1-9e096f3320b7
