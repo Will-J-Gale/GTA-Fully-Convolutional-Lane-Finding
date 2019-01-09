@@ -1,5 +1,32 @@
 # GTA-Fully-Convolutional-Lane-Finding
-![alt text](https://github.com/Will-J-Gale/GTA-Fully-Convolutional-Lane-Finding/blob/master/Images/Conv%20Lane%20HALF%20SIZE.gif)  
+![alt text](https://github.com/Will-J-Gale/GTA-Fully-Convolutional-Lane-Finding/blob/master/Images/3.%20LaneFinding.gif)  
+
+## Updates
+__1. PNG Images__
+ 
+ * The original training data used JPEG images, which turned out to have JPG compression artifacts and effected the training, whereas    the new training data is in PNG format to avoid heavy compression artifacts  
+  
+__2. Threshold TrainingData:__
+
+ * The new training data images have a threshold applied to them so the lanes are guarenteed to all be at 1 and background all be at 0.  
+  
+__3. Classification:__
+
+ * The original model posed the lane finding as a regression problem, using a "mean squared" error with the output activation as "relu". However, the new problem poses the lane finding as a classification problem, using a more in line with the SegNet, which gives much better results.   
+
+Overall these changes drastically improve the lane finding
+
+![alt text](https://github.com/Will-J-Gale/GTA-Fully-Convolutional-Lane-Finding/blob/master/Images/1.%20Original_Model.gif)
+![alt text](https://github.com/Will-J-Gale/GTA-Fully-Convolutional-Lane-Finding/blob/master/Images/2.%20Cleaned_Data.gif)
+![alt text](https://github.com/Will-J-Gale/GTA-Fully-Convolutional-Lane-Finding/blob/master/Images/3.%20LaneFinding.gif) 
+
+These 3 images show the progression of the algorithm
+
+__Top Left:__ Old model with JPEG images that have artifacts, trained as a regression problem  
+__Top Right:__ Trained with clean PNG images, trained as a regression problem  
+__Bottom Left:__ Newest model with clean training data, trained as a classsifcation problem  
+
+It is clear that training the algorithm as a classification gave much better results 
 
 ## How it works
 This algorithm is a fully convolutional neural network that takes a 3-channel image input and outputs a 1 channel image with its prediction of where the lanes are  
@@ -13,12 +40,12 @@ The network was trained on ~40000 images
 Lanes were captured using https://github.com/Will-J-Gale/GTA-Lane-Finding with only the good images used
 
 ## Advantages over standard lane finding algorithm
-   1. Runs at ~15fps (~5fps faster)
+   1. Runs at ~20fps (~10fps faster than standard algorithm)
    2. Reacts well to fast movement
    3. Potentially more accurate 
    
 ## Prerequisites 
-1. GTA 5 + Mods
+1. GTA 5 + Mods (Not all mods are 100% necessary)
    * Script Hook V
    * Native trainer
    * Enhanced native trainer
@@ -36,8 +63,7 @@ Recommended to use on dual monitors
 1. Run GTA5 in windowed mode 1280x720
 2. Find a car and enable Hood Camera
 3. Run LaneFinder.py
-
    
-The above demonstration shows the fully convolution network has potential and is clearly learning the lanes.  
-More data is still required to reduce the glitches and improve accuracy
+The demonstration at the top of the page shows the fully convolution network has potential and is clearly learning the lanes.  
+More data is still required to reduce the glitches and improve accuracy.
 
