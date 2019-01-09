@@ -1,53 +1,88 @@
-import cv2, time
 import numpy as np
-from FullConvolutionModel import FCModel
+import cv2, time
 from grabscreen import grab_screen
-
-model = FCModel()
-model.load_weights("TEST_ALL_CONV.model")
-
-width = 801
-height = 586
-
-SCREEN_REGION = ((1920//2) - (1280//2), (1080//2) - (720//2) + 15, (1920//2) + (1280//2), (1080//2) + (720//2))
-MODEL_SIZE = 224 # VGG: Image Size model requires
-#MODEL_SIZE = 299 # Inceptionv3: Image Size model requires
-NEW_SIZE = (320, 160)
-previousTime = time.time()
+from LaneNNModel import LaneNNModel
 
 def showFrameTime():
     global previousTime
     print(time.time() - previousTime)
     previousTime = time.time()
     
-def preprocessInput(inputData):
-    newData = inputData / 255
-##    newData = newData - 0.5
-##    newData = newData * 2
-
-    return newData
+def preprocessInput(image):
+    newImage = cv2.resize(image, MODEL_INPUT_SIZE)
+    newImage = np.expand_dims(newImage, axis=0)
+    newImage = newImage / 255
     
-while(True):
-    screen = grab_screen(SCREEN_REGION)
-    screen = cv2.cvtColor(screen, cv2.COLOR_BGR2RGB)
-    modelInput = cv2.resize(screen, NEW_SIZE)
-    outputImage = np.array(modelInput)
-    modelInput = np.expand_dims(modelInput, axis=0)
-    modelInput = preprocessInput(modelInput)
-    prediction = model.predict(modelInput)[0] * 255
-    prediction = prediction.astype(np.uint8)
+    return newImage
 
-    #red = np.zeros_like(prediction).astype(np.int8)
-    #blue = np.zeros_like(prediction).astype(np.int8)
-    #overlay = np.concatenate((red, prediction, blue), axis=2)
-    ret,prediction = cv2.threshold(prediction,1,255,cv2.THRESH_BINARY)
-    overlay = np.zeros((160, 320, 3))
-    overlay[:, :, 1] = prediction
+def postProcessOutput(image):
+    #Bring image from 0-1 to 0-255 and remove last axis
+    newImage = image * 255
+    newImage = newImage.astype(np.uint8)
+    newImage = np.squeeze(newImage, axis=2)
+
+    #Create blank image and add image to the GREEN channel
+    overlay = np.zeros((MODEL_INPUT_SIZE[1], MODEL_INPUT_SIZE[0], 3))
+    overlay[:, :, 1] = newImage
     overlay = overlay.astype(np.uint8)
-    overlay = cv2.resize(overlay, (screen.shape[1], screen.shape[0]))
-    
-    overlay = cv2.add(overlay*2, screen)
-    cv2.imshow("LaneNN", overlay)
-    cv2.waitKey(2)
+    overlay = cv2.resize(overlay, NEW_SIZE, interpolation=cv2.INTER_NEAREST)
 
-    showFrameTime()
+    return overlay
+
+#Screen co-ordinate variables
+#------------------------------------------------------------------------
+
+width = 1920 - 1
+height = 1080
+
+gameWidth = 1274 
+gameHeight = 714
+
+xOffset = 2
+yOffset = 17
+
+gameStartX = ((width//2) - (gameWidth//2)) + xOffset
+gameStartY = ((height//2) - (gameHeight//2)) + yOffset
+gameEndX = ((width//2) + (gameWidth//2)) + xOffset
+gameEndY = ((height//2) + (gameHeight//2)) + yOffset
+SCREEN_REGION = (gameStartX, gameStartY, gameEndX, gameEndY)
+
+#Size of image going into Neural Network
+NEW_SIZE = (800, 450)
+MODEL_INPUT_SIZE = (320, 160)
+#Lane Finding Model
+#------------------------------------------------------------------------
+MODEL_WEIGHTS = "LaneNN.model"
+model = LaneNNModel()
+model.load_weights(MODEL_WEIGHTS)
+AI_ENABLED = True
+
+#Start Frame time clock
+previousTime = time.time()
+
+if __name__ == "__main__":
+
+    while(True):
+
+        #Check for keyboard interrupt
+        try:
+            start = time.time()
+            screen = grab_screen(SCREEN_REGION)
+            screen = cv2.cvtColor(screen, cv2.COLOR_BGR2RGB)
+
+            if(AI_ENABLED):
+                modelInput = preprocessInput(screen)
+                prediction = model.predict(modelInput)[0]
+                overlay = postProcessOutput(prediction)
+                
+                screen = cv2.resize(screen, NEW_SIZE)
+                overlay = cv2.add(overlay, screen)
+             
+                cv2.imshow("Lane", overlay)
+                key = cv2.waitKey(2)
+                #showFrameTime()
+        except KeyboardInterrupt:
+            print("Closing")
+            break
+        
+    cv2.destroyAllWindows()
