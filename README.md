@@ -4,17 +4,17 @@
 ## Updates
 __1. PNG Images__
  
- * The original training data used JPEG images, which turned out to have JPG compression artifacts and affected the training, whereas    the new training data uses PNG format to avoid heavy compression artifacts  
+ * The original training data used JPEG images, which turned out to have JPEG compression artifacts and affected the training, whereas    the new training data uses PNG format to avoid heavy compression artifacts  
   
 __2. Threshold TrainingData:__
 
- * The new training data images have a threshold applied to them so the lanes are guarenteed to all be at 1 and background all be at 0.  
+ * The new training data images have a threshold applied to them so the lanes are guarenteed to all be at 1 and background all be at 0, with nothing in between.  
   
 __3. Classification:__
 
- * The original model posed the lane finding as a regression problem, using a "mean squared" error with the output activation as "relu". However, the new problem poses the lane finding as a classification problem, using a more in line with the SegNet, which gives much better results.   
+ * The original model posed lane finding as a regression problem, using a "mean squared error" loss with the output activation as "relu". However, the new problem poses the lane finding as a classification problem, and used a "binary crosentropy" loss with a sigmoid activation on the output. This is more in line with the SegNet, and gives much better results.   
 
-Overall these changes drastically improve the lane finding
+Overall these changes drastically improve the lane finding.
 
 ![alt text](https://github.com/Will-J-Gale/GTA-Fully-Convolutional-Lane-Finding/blob/master/Images/1.%20Original_Model.gif)
 ![alt text](https://github.com/Will-J-Gale/GTA-Fully-Convolutional-Lane-Finding/blob/master/Images/2.%20Cleaned_Data.gif)
@@ -22,11 +22,11 @@ Overall these changes drastically improve the lane finding
 
 These 3 images show the progression of the algorithm
 
-__Top Left:__ Old model with JPEG images that have artifacts, trained as a regression problem  
+__Top Left:__ Old model with JPEG training images that have artifacts, trained as a regression problem  
 __Top Right:__ Trained with clean PNG images, trained as a regression problem  
 __Bottom Left:__ Newest model with clean training data, trained as a classsifcation problem  
 
-It is clear that training the algorithm as a classification gave much better results 
+It is clear that training the algorithm as a classification gave much better results. Moreover, clean training data also helped improve the model.
 
 ## How it works
 This algorithm is a fully convolutional neural network that takes a 3-channel image input and outputs a 1 channel image with its prediction of where the lanes are  
