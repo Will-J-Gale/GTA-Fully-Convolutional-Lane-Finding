@@ -16,6 +16,9 @@ __3. Classification:__
 
 Overall these changes drastically improve the lane finding.
 
+
+## Model Progression
+
 ![alt text](https://github.com/Will-J-Gale/GTA-Fully-Convolutional-Lane-Finding/blob/master/Images/1.%20Original_Model.gif)
 ![alt text](https://github.com/Will-J-Gale/GTA-Fully-Convolutional-Lane-Finding/blob/master/Images/2.%20Cleaned_Data.gif)
 ![alt text](https://github.com/Will-J-Gale/GTA-Fully-Convolutional-Lane-Finding/blob/master/Images/3.%20LaneFinding.gif) 
