@@ -39,6 +39,9 @@ The network was trained on ~40000 images
 ~20000 images were used but were flipped horizontally doubling the sample size  
 Lanes were captured using https://github.com/Will-J-Gale/GTA-Lane-Finding with only the good images used
 
+## Algorithm Evaluation
+This algorithm seems to learn to find the lane is is currently in. Unlike the previous iterations, it more precicely detects the edges of the lanes. It fails when there are no clear lines (at junctions) but with further training on a more robust data set, this problem could be fixed.
+
 ## Advantages over standard lane finding algorithm
    1. Runs at ~20fps (~10fps faster than standard algorithm)
    2. Reacts well to fast movement
