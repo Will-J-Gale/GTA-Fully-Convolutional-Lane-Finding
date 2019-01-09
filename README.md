@@ -4,7 +4,7 @@
 ## Updates
 __1. PNG Images__
  
- * The original training data used JPEG images, which turned out to have JPG compression artifacts and effected the training, whereas    the new training data is in PNG format to avoid heavy compression artifacts  
+ * The original training data used JPEG images, which turned out to have JPG compression artifacts and Affects the training, whereas    the new training data is in PNG format to avoid heavy compression artifacts  
   
 __2. Threshold TrainingData:__
 
