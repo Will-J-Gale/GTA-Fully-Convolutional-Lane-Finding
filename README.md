@@ -1,6 +1,11 @@
 # GTA-Fully-Convolutional-Lane-Finding
 ![alt text](https://github.com/Will-J-Gale/GTA-Fully-Convolutional-Lane-Finding/blob/master/Images/Conv%20Lane%20HALF%20SIZE.gif)  
 
+## Algorithm Problems
+It seemed that a threshold applied to the output of the model caused a lot of the glitches seen in the above image.
+Moreover, the training data had JPG compression artifcats which resulted in poor training
+The master branch has an up to date version of this project, detailing the fixes/updates made
+
 ## How it works
 This algorithm is a fully convolutional neural network that takes a 3-channel image input and outputs a 1 channel image with its prediction of where the lanes are  
 
@@ -39,4 +44,3 @@ Recommended to use on dual monitors
    
 The above demonstration shows the fully convolution network has potential and is clearly learning the lanes.  
 More data is still required to reduce the glitches and improve accuracy
-
