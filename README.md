@@ -4,15 +4,15 @@
 ## Updates
 __1. PNG Images__
  
- * The original training data used JPEG images, which turned out to have JPEG compression artifacts and affected the training, whereas    the new training data uses PNG format to avoid heavy compression artifacts  
+ * The original training data used JPEG images, which turned out to have JPEG compression artefacts and affected the training, whereas    the new training data uses PNG format to avoid heavy compression artefacts  
   
-__2. Threshold TrainingData:__
+__2. Threshold Training Data:__
 
- * The new training data images have a threshold applied to them so the lanes are guarenteed to all be at 1 and background all be at 0, with nothing in between.  
+ * The new training data images have a threshold applied to them, so the lanes are guaranteed to all be at 1 and background all be at 0, with nothing in between.  
   
 __3. Classification:__
 
- * The original model posed lane finding as a regression problem, using a "mean squared error" loss with the output activation as "relu". However, the new problem poses the lane finding as a classification problem, and used a "binary crosentropy" loss with a sigmoid activation on the output. This is more in line with the SegNet, and gives much better results.   
+ * The original model posed lane finding as a regression problem, using a "mean squared error" loss with the output activation as "relu". However, the new problem poses the lane finding as a classification problem, and used a "binary cros entropy" loss with a sigmoid activation on the output. This is more in line with the SegNet, and gives much better results.   
 
 Overall these changes drastically improve the lane finding.
 
@@ -22,9 +22,9 @@ Overall these changes drastically improve the lane finding.
 
 These 3 images show the progression of the algorithm
 
-__Top Left:__ Old model with JPEG training images that have artifacts, trained as a regression problem  
+__Top Left:__ Old model with JPEG training images that have artefacts, trained as a regression problem  
 __Top Right:__ Trained with clean PNG images, trained as a regression problem  
-__Bottom Left:__ Newest model with clean training data, trained as a classsifcation problem  
+__Bottom Left:__ Newest model with clean training data, trained as a classification problem  
 
 It is clear that training the algorithm as a classification gave much better results. Moreover, clean training data also helped improve the model.
 
@@ -40,7 +40,7 @@ The network was trained on ~40000 images
 Lanes were captured using https://github.com/Will-J-Gale/GTA-Lane-Finding with only the good images used
 
 ## Algorithm Evaluation
-This algorithm seems to learn to find the lane is is currently in. Unlike the previous iterations, it more precicely detects the edges of the lanes. It fails when there are no clear lines (at junctions) but with further training on a more robust data set, this problem could be fixed.
+This algorithm seems to learn to find the lane is currently in. Unlike the previous iterations, it more precisely detects the edges of the lanes. It fails when there are no clear lines (at junctions) but with further training on a more robust data set, this problem could be fixed.
 
 ## Advantages over standard lane finding algorithm
    1. Runs at ~20fps (~10fps faster than standard algorithm)
