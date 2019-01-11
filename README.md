@@ -1,5 +1,5 @@
 # GTA-Fully-Convolutional-Lane-Finding
-![alt text](https://github.com/Will-J-Gale/GTA-Fully-Convolutional-Lane-Finding/blob/master/Images/Conv%20Lane%20HALF%20SIZE.gif)  
+![alt text](https://github.com/Will-J-Gale/GTA-Fully-Convolutional-Lane-Finding/blob/Old-Model/Images/Conv%20Lane%20HALF%20SIZE.gif)  
 
 ## Algorithm Problems
 It seemed that a threshold applied to the output of the model caused a lot of the glitches seen in the above image.
