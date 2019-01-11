@@ -3,7 +3,9 @@
 
 ## Algorithm Problems
 It seemed that a threshold applied to the output of the model caused a lot of the glitches seen in the above image.
-Moreover, the training data had JPG compression artifcats which resulted in poor training
+Moreover, the training data had JPG compression artifcats which resulted in poor training.
+
+
 The master branch has an up to date version of this project, detailing the fixes/updates made  
 
 https://github.com/Will-J-Gale/GTA-Fully-Convolutional-Lane-Finding
