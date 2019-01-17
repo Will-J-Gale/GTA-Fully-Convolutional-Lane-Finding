@@ -64,8 +64,6 @@ def LaneNNModel(inputShape = (160, 320, 3), batchSize = 64, epochs = 10, poolSiz
     model.add(Conv2DTranspose(16, (3,3), padding='valid', strides=(1,1), activation='relu', name='Deconv6'))
     model.add(Conv2DTranspose(1, (3,3), padding='valid', strides=(1,1), activation='sigmoid', name='Final'))
 
-    model.compile(loss='binary_crossentropy', optimizer=optimizer)
-
     return model
 
 if __name__ == "__main__":
