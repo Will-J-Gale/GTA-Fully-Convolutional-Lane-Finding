@@ -29,7 +29,7 @@ __Top Left:__ Old model with JPEG training images that have artefacts, trained a
 __Top Right:__ Trained with clean PNG images, trained as a regression problem  
 __Bottom Left:__ Newest model with clean training data, trained as a classification problem  
 
-It is clear that training the algorithm as a classification gave much better results. Moreover, clean training data also helped improve the model.
+It is clear that training the algorithm as a classification problem gave much better results. Moreover, clean training data also helped improve the model.
 
 ## How it works
 This algorithm is a fully convolutional neural network that takes a 3-channel image input and outputs a 1 channel image with its prediction of where the lanes are  
